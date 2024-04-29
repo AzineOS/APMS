@@ -11,3 +11,7 @@ The main package delivery system for Azine Linux, however, macOS DMG files are t
 - [ ] Update Packages
 - [ ] Remove Packages
 - [ ] Change Package Host URL
+- [ ] File Integrity
+- [ ] Version Control
+- [ ] Package Search
+- [ ] Package Hosting Server
