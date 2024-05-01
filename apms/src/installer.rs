@@ -12,7 +12,6 @@ fn download_data(url: String) -> Result<String, reqwest::Error> {
 fn get_url(hostname: String, name: String) -> String {
     let trimmed = hostname.trim_end_matches('/');
     if !trimmed.contains("<PKG>") {
-        dbg!(trimmed);
         return format!("{trimmed}/{name}");
     }
 
