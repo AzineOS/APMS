@@ -3,7 +3,7 @@ use warp::Filter;
 #[tokio::main]
 async fn main() {
     // GET /hello/warp => 200 OK with body "Hello, warp!"
-    let hello = warp::path!("package" / String)
+    let hello = warp::path!("packages" / String / "download")
         .map(|name| format!("TODO: Get {}", name));
 
     warp::serve(hello)
