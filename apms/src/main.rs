@@ -7,6 +7,8 @@ mod installer;
 fn main() {
     paths::init_paths();
 
+    // std::env::set_var("RUST_BACKTRACE", "1");
+
     // TODO: Execute action with relevant args
     let args: Vec<String> = std::env::args().collect();
     if args.len() < 2 {

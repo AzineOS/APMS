@@ -1,7 +1,7 @@
-use std::{fs::File, io::{self, ErrorKind, Read, Write}, path::Path};
+use std::{fs::File, io::{self, Read, Write}, path::Path};
 
-use lazy_static::lazy_static;
 use directories::ProjectDirs;
+use lazy_static::lazy_static;
 
 use crate::installer::DEFAULT_HOSTNAME;
 
