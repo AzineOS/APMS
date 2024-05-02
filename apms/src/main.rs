@@ -33,7 +33,7 @@ fn main() {
                 exit(1);
             }
         }
-    }
+    
 
             installer::install_package(args[2].clone());
         },
