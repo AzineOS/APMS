@@ -23,6 +23,15 @@ fn main() {
                 exit(1);
             }
 
+            
+    match args[1].as_str() {
+        "help" => {
+            if args.len() < 3 {
+                println!("apms install <package> : Pretty self explanitory! Installs the package you request!");
+                println!("apms help : Prints this menu in your terminal. Duh!");
+                exit(1);
+            }
+
             installer::install_package(args[2].clone());
         },
         "update" => {
