@@ -4,9 +4,12 @@
 
 What versions of APMS are supported currently?
 
-| Version     | Supported          | Support Ends       |
-| -------     | ------------------ | ------------------ |
-| APMS Beta   | :white_check_mark: | 30 April 2025      |
+| Version                 | Supported          | Support Ends               |
+| ----------------------- | ------------------ | -------------------------- |
+| APMS Main Branch Beta   | :x:                | NOT SUPPORTED - BETA       |
+| ----------------------- | ------------------ | -------------------------- |
+| APMS Dev Branch Beta    | ✅                 | Endless, Updates Frequent. |
+| ----------------------- | ------------------ | -------------------------- |
 
 ## Reporting a Vulnerability
 
