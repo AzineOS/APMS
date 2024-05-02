@@ -7,9 +7,7 @@ What versions of APMS are supported currently?
 | Version                 | Supported          | Support Ends               |
 | ----------------------- | ------------------ | -------------------------- |
 | APMS Main Branch Beta   | :x:                | NOT SUPPORTED - BETA       |
-| ----------------------- | ------------------ | -------------------------- |
 | APMS Dev Branch Beta    | ✅                 | Endless, Updates Frequent. |
-| ----------------------- | ------------------ | -------------------------- |
 
 ## Reporting a Vulnerability
 
