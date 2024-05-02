@@ -1,8 +1,9 @@
-use std::fmt::format;
 use std::fs::File;
 use std::io::{Read, Write};
+
 use lazy_static::lazy_static;
-use crate::paths::{get_packages_path, PROJECT_DIR, read_hostname};
+
+use crate::paths::{get_packages_path, read_hostname};
 
 lazy_static! {
     pub static ref DEFAULT_HOSTNAME: String = String::from("http://127.0.0.1:8080/packages/<PKG>/download");
@@ -38,6 +39,7 @@ pub fn install_package(name: String) {
     println!("Package data received! Writing to file...");
 
     let data_dir = get_packages_path().join(format!("{name}"));
+    println!("Downloading to {}", data_dir.clone().to_str().unwrap());
 
     // Create package directory
     std::fs::create_dir_all(data_dir.clone())
