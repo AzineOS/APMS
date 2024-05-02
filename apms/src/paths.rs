@@ -13,10 +13,17 @@ pub fn get_hostname_path() -> std::path::PathBuf {
     Path::join(PROJECT_DIR.config_dir(), "hosts.txt")
 }
 
+pub fn get_packages_path() -> std::path::PathBuf {
+    Path::join(PROJECT_DIR.data_dir(), "packages/")
+}
+
 pub fn init_paths() {
     // Config Directory
-    let path = PROJECT_DIR.config_dir();
-    std::fs::create_dir_all(path).expect("Failed to create path");
+    let config_path = PROJECT_DIR.config_dir();
+    std::fs::create_dir_all(config_path).expect("Failed to create config path!");
+
+    let package_data_path = get_packages_path();
+    std::fs::create_dir_all(package_data_path).expect("Failed to create package data path!");
 
     // Hostnames File
     let hostname_path = get_hostname_path();
