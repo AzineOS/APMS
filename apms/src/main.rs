@@ -22,7 +22,7 @@ fn main() {
                 println!("Usage: apms install <package>");
                 exit(1);
             }
-
+        }
             
     match args[1].as_str() {
         "help" => {
@@ -31,6 +31,7 @@ fn main() {
                 println!("apms help : Prints this menu in your terminal. Duh!");
                 exit(1);
             }
+        }
 
             installer::install_package(args[2].clone());
         },
