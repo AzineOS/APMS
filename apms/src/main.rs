@@ -22,6 +22,7 @@ fn main() {
                 println!("Usage: apms install <package>");
                 exit(1);
             }
+        }
         
             
     match args[1].as_str() {
@@ -32,6 +33,7 @@ fn main() {
                 exit(1);
             }
         }
+    }
 
             installer::install_package(args[2].clone());
         },
