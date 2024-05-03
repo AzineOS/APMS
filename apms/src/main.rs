@@ -22,10 +22,7 @@ fn main() {
                 println!("Usage: apms install <package>");
                 exit(1);
             }
-        }
-        
-            
-    match args[1].as_str() {
+        },
         "help" => {
             if args.len() < 3 {
                 println!("apms install <package>: Installs the package you specify.")
@@ -35,10 +32,6 @@ fn main() {
                 println!("apms help: Opens this help menu! Duh!")
                 exit(1);
             }
-        }
-    
-
-            installer::install_package(args[2].clone());
         },
         "update" => {
             todo!()
