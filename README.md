@@ -10,10 +10,10 @@ Use `apms help` for information on how to install, update and remove packages!
 
 # Don't have APMS installed yet?
 
-Open a terminal and type `git clone https://github.com/AzineOS/APMS -b dev`
-`cd APMS` then `cd apms` (2 SEPERATE COMMANDS, DO THEM BOTH.)
-Ensure you have RUST installed on your system.
-Type `cargo build` and wait.
+Open a terminal and type `git clone https://github.com/AzineOS/APMS -b dev`<br>
+`cd APMS` then `cd apms` (2 SEPERATE COMMANDS, DO THEM BOTH.)<br>
+Ensure you have RUST installed on your system.<br>
+Type `cargo build` and wait.<br>
 
 Then it's done! That's APMS installed. To use APMS at current you need to use the test server, see below for more information.
 
