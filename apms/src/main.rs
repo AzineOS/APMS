@@ -25,11 +25,11 @@ fn main() {
         },
         "help" => {
             if args.len() < 3 {
-                println!("apms install <package>: Installs the package you specify.")
-                println!("apms update: Updates packages on your system.")
-                println!("apms remove: Removes a package from your system.")
-                println!("apms find: Searches your system and finds a package!")
-                println!("apms help: Opens this help menu! Duh!")
+                println!("apms install <package>: Installs the package you specify.");
+                println!("apms update: Updates packages on your system.");
+                println!("apms remove: Removes a package from your system.");
+                println!("apms find: Searches your system and finds a package!");
+                println!("apms help: Opens this help menu! Duh!");
                 exit(1);
             }
         },
