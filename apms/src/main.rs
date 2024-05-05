@@ -1,54 +1,58 @@
-use core::panic;
 use std::process::exit;
+
+use crate::command::COMMANDS;
 
 mod paths;
 mod installer;
+mod command;
 
-fn main() {
-    paths::init_paths();
-
-    // std::env::set_var("RUST_BACKTRACE", "1");
-
-    // TODO: Execute action with relevant args
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() < 2 {
-        println!("Usage: apms <action> <...>");
+pub fn install(args: Vec<String>) {
+    if args.len() < 3 {
+        eprintln!("Usage: apms install <package>");
         exit(1);
     }
 
-    match args[1].as_str() {
-        "install" => {
-            if args.len() < 3 {
-                println!("Usage: apms install <package>");
-                exit(1);
-            }
-        }
-        
-            
-    match args[1].as_str() {
-        "help" => {
-            if args.len() < 3 {
-                println!("apms install <package>: Installs the package you specify.")
-                println!("apms update: Updates packages on your system.")
-                println!("apms remove: Removes a package from your system.")
-                println!("apms find: Searches your system and finds a package!")
-                println!("apms help: Opens this help menu! Duh!")
-                exit(1);
-            }
-        }
-    
+    installer::install_package(args[2].clone());
+}
 
-            installer::install_package(args[2].clone());
-        },
-        "update" => {
-            todo!()
-        },
-        "remove" => {
-            todo!()
-        },
-        "find" => {
-            todo!()
-        },
-        _ => panic!("Invalid Argument"),
+pub fn help(_: Vec<String>) {
+    // Forcefully unlock the commands mutex, so we don't get stuck indefinitely
+    unsafe {
+        COMMANDS.force_unlock();
+    }
+
+    for cmd in COMMANDS.lock().iter() {
+        println!("apms {}: {}", cmd.name, cmd.description);
+    }
+}
+
+pub fn unimplemented_command(_: Vec<String>) {
+    unimplemented!()
+}
+
+fn main() {
+    paths::init_paths();
+    command::init_commands();
+
+    // std::env::set_var("RUST_BACKTRACE", "1");
+
+    let args: Vec<String> = std::env::args().collect();
+    if args.len() < 2 {
+        eprintln!("Usage: apms <action> <...>");
+        exit(1);
+    }
+
+    let mut cmd_found: bool = false;
+    for cmd in COMMANDS.lock().iter() {
+        if args[1].clone() == cmd.name {
+            cmd_found = true;
+            (cmd.function)(args.clone());
+            break;
+        }
+    }
+
+    if !cmd_found {
+        eprintln!("Command \"{}\" not found!", args[1]);
+        exit(1);
     }
 }
