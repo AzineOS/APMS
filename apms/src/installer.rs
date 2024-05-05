@@ -51,7 +51,7 @@ pub fn install_package(name: String) {
     package_zip.write(response.leak())
         .expect("Failed to write to package.zip!");
 
-    // TODO: Extract ZIP
+    // TODO: Extract ZIP - Heavily Experimental. May not work.
 
     let archive: Vec<u8> = <PKG>()?;
     let target_dir = PathBuf::from("/usr/Azine/");
