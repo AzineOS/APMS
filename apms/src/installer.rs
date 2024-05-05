@@ -52,4 +52,9 @@ pub fn install_package(name: String) {
         .expect("Failed to write to package.zip!");
 
     // TODO: Extract ZIP
+
+    let archive: Vec<u8> = <PKG>()?;
+    let target_dir = PathBuf::from("/usr/Azine/");
+    zip_extract::extract(Cursor::new(archive), &target_dir, true)?;
+
 }

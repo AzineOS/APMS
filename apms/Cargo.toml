@@ -10,3 +10,5 @@ directories = "5.0.1"
 lazy_static = "1.4.0"
 reqwest = { version = "0.12.4", features = ["blocking"] }
 spin = "0.9.8"
+zip = "1.1.4"
+zip-extract = "0.1.3"
