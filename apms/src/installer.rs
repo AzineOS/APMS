@@ -1,9 +1,10 @@
 use std::fs::File;
-use std::io::{Read, Write};
+use std::io::{Cursor, Read, Write};
+use std::path::{Path, PathBuf};
 
 use lazy_static::lazy_static;
 
-use crate::paths::{get_packages_path, read_hostname};
+use crate::paths::{self, get_azine_bin_path, get_packages_path, read_hostname};
 
 lazy_static! {
     pub static ref DEFAULT_HOSTNAME: String = String::from("http://127.0.0.1:8080/packages/<PKG>/download");
@@ -26,6 +27,18 @@ fn get_url(hostname: String, name: String) -> String {
     url
 }
 
+fn extract_zip(file_path: &Path, extract_path: &Path) -> Result<(), zip_extract::ZipExtractError> {
+    // Read the contents of the ZIP file
+    let mut zip_file = File::open(file_path)?;
+    let mut zip_data = Vec::new();
+    zip_file.read_to_end(&mut zip_data)?;
+
+    // Extract the contents of the ZIP file to the provided path
+    zip_extract::extract(Cursor::new(zip_data), extract_path, true)?;
+
+    Ok(())
+}
+
 pub fn install_package(name: String) {
     let hostname = read_hostname()
         .expect("Failed to read hostname!");
@@ -46,15 +59,16 @@ pub fn install_package(name: String) {
         .expect("Failed to create directory for package!");
 
     // Download package ZIP
-    let mut package_zip = File::create(data_dir.join("package.zip"))
+    let package_path = data_dir.join("package.zip");
+    let mut package_zip = File::create(package_path.clone())
         .expect("Failed to create package.zip!");
     package_zip.write(response.leak())
         .expect("Failed to write to package.zip!");
 
-    // TODO: Extract ZIP - Heavily Experimental. May not work.
 
-    let archive: Vec<u8> = <PKG>()?;
-    let target_dir = PathBuf::from("/usr/Azine/");
-    zip_extract::extract(Cursor::new(archive), &target_dir, true)?;
-
+    let extract_path = get_azine_bin_path().join(format!("{}-archive", name));
+    match extract_zip(&package_path, &extract_path) {
+        Ok(()) => println!("Extraction successful!"),
+        Err(err) => eprintln!("Extraction failed: {}", err),
+    }
 }

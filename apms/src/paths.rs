@@ -17,6 +17,11 @@ pub fn get_packages_path() -> std::path::PathBuf {
     Path::join(PROJECT_DIR.data_dir(), "packages/")
 }
 
+pub fn get_azine_bin_path() -> std::path::PathBuf {
+    // std::path::PathBuf::from("/usr/azine/bin")
+    Path::join(PROJECT_DIR.data_dir(), "packages/bin")
+}
+
 pub fn init_paths() {
     // Config Directory
     let config_path = PROJECT_DIR.config_dir();
@@ -24,6 +29,9 @@ pub fn init_paths() {
 
     let package_data_path = get_packages_path();
     std::fs::create_dir_all(package_data_path).expect("Failed to create package data path!");
+
+    let package_bin_path = get_azine_bin_path();
+    std::fs::create_dir_all(package_bin_path).expect("Failed to create package bin path!");
 
     // Hostnames File
     let hostname_path = get_hostname_path();
