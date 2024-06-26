@@ -28,7 +28,7 @@ More information on HTTPS and SSH cloning is available [here](https://stackoverf
 
 ## Compiling
 Once you have downloaded APMS, use your terminal to navigate into the project files.<br>
-Then you can compile the porject using `cargo build`.
+Then you can compile the project using `cargo build`.
 
 ## Running
 To run APMS, you can either run the compiled binaries from the `target` output directory, or you can directly use `cargo` to run the project.<br>
