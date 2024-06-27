@@ -3,6 +3,7 @@ use std::process::exit;
 use crate::command::COMMANDS;
 
 mod paths;
+mod network;
 mod installer;
 mod command;
 
@@ -24,6 +25,24 @@ pub fn help(_: Vec<String>) {
     for cmd in COMMANDS.lock().iter() {
         println!("apms {}: {}", cmd.name, cmd.description);
     }
+}
+
+pub fn remove(args: Vec<String>) {
+    if args.len() < 3 {
+        eprintln!("Usage: apms remove <package>");
+        exit(1);
+    }
+
+    installer::remove_package(args[2].clone());
+}
+
+pub fn find(args: Vec<String>) {
+    if args.len() < 3 {
+        eprintln!("Usage: apms find <package>");
+        exit(1);
+    }
+
+    installer::find_package(args[2].clone());
 }
 
 pub fn unimplemented_command(_: Vec<String>) {

@@ -44,6 +44,6 @@ pub fn init_commands() {
     add_command(Command::from_str("help", "Shows this page", crate::help));
     add_command(Command::from_str("install", "Installs the specified package", crate::install));
     add_command(Command::from_str("update", "Updates a specified package", crate::unimplemented_command));
-    add_command(Command::from_str("remove", "Uninstalls a package from your system", crate::unimplemented_command));
-    add_command(Command::from_str("find", "Checks your system for a package and returns the path if found", crate::unimplemented_command));
+    add_command(Command::from_str("remove", "Uninstalls a package from your system", crate::remove));
+    add_command(Command::from_str("find", "Checks your system for a package and returns the path if found", crate::find));
 }
